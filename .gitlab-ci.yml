@@ -1,0 +1,38 @@
+﻿stages:
+  - build
+  - test
+  - deploy
+
+variables:
+  AWS_REGION: "us-west-2"
+  ECR_REPO_NAME: "acme-corp-api"
+  KUBE_NAMESPACE: "acme-corp-namespace"
+  KUBE_SERVICE_NAME: "acme-corp-api-service"
+
+build:
+  stage: build
+  image: mcr.microsoft.com/dotnet/sdk:6.0
+  script:
+    - dotnet restore
+    - dotnet build --configuration Release
+
+test:
+  stage: test
+  image: mcr.microsoft.com/dotnet/sdk:6.0
+  script:
+    - dotnet test
+
+deploy:
+  stage: deploy
+  image: docker:latest
+  services:
+    - docker:dind
+  before_script:
+    - echo $AWS_ACCESS_KEY_ID | docker login --username AWS --password-stdin $AWS_REGISTRY_URL
+    - aws eks update-kubeconfig --region $AWS_REGION --name acme-corp-cluster
+  script:
+    - docker build -t $ECR_REPO_NAME .
+    - docker tag $ECR_REPO_NAME:latest 123456789012.dkr.ecr.us-west-2.amazonaws.com/acme-corp-api:latest
+    - docker push 123456789012.dkr.ecr.us-west-2.amazonaws.com/acme-corp-api:latest
+    - kubectl apply -f kubernetes/deployment.yml -n $KUBE_NAMESPACE
+    - kubectl rollout status deployment/$KUBE_SERVICE_NAME -n $KUBE_NAMESPACE

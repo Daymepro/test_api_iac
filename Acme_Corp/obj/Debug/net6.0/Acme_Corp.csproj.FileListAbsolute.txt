@@ -1,0 +1,7 @@
+/Users/mac/Projects/Acme_Corp/Acme_Corp/obj/Debug/net6.0/Acme_Corp.csproj.AssemblyReference.cache
+/Users/mac/Projects/Acme_Corp/Acme_Corp/obj/Debug/net6.0/Acme_Corp.GeneratedMSBuildEditorConfig.editorconfig
+/Users/mac/Projects/Acme_Corp/Acme_Corp/obj/Debug/net6.0/Acme_Corp.AssemblyInfoInputs.cache
+/Users/mac/Projects/Acme_Corp/Acme_Corp/obj/Debug/net6.0/Acme_Corp.AssemblyInfo.cs
+/Users/mac/Projects/Acme_Corp/Acme_Corp/obj/Debug/net6.0/Acme_Corp.csproj.CoreCompileInputs.cache
+/Users/mac/Projects/Acme_Corp/Acme_Corp/obj/Debug/net6.0/Acme_Corp.MvcApplicationPartsAssemblyInfo.cs
+/Users/mac/Projects/Acme_Corp/Acme_Corp/obj/Debug/net6.0/Acme_Corp.MvcApplicationPartsAssemblyInfo.cache
